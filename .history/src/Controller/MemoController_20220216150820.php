@@ -24,7 +24,7 @@ class MemoController extends AbstractController
     public function index($id): Response
     {
         $memo = $this->memoRepository->find($id);
-        date_default_timezone_set("Europe/Paris"); 
+
         if(new DateTime() > $memo->getExpirationDate()) {
             $response = new Response($this->render("expirate.html.twig"));
             $response->setStatusCode(410);
