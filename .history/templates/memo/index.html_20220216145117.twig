@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Memo{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper {
+        margin: 1em auto;
+        max-width: 800px;
+        width: 95%;
+        font: 18px/1.5 sans-serif;
+    }
+
+    .example-wrapper code {
+        background: #F5F5F5;
+        padding: 2px 6px;
+    }
+</style>
+
+<div class="example-wrapper">
+    <h1>Memo {{ memo.id }}</h1>
+
+    {% if "now"|date('Y-m-d-h:i:s') > memo.expirationDate|date('Y-m-d-h:i:s') %}
+    <div>Ce memo est expiré</div>
+    
+    {% else %}
+
+    <h3>Contenu</h3>
+    <div>{{ memo.content }}</div>
+    <br>
+    <div>heure d'expiration : {{ memo.expirationDate |date('H:i:s') }}</div>
+    <br>
+    <h3>Lien vers ce memo</h3>
+    <a href="http://memo/" {{memo.id}}>http://memo/{{memo.id}}</a>
+    {% endif %}
+</div>
+{% endblock %}
